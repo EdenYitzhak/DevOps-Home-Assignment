@@ -26,22 +26,22 @@ RDS database instance.
 Security groups for allowing HTTP (port 80) traffic and private communication between the EC2 instance and RDS.
 
 ***infrastructure.yaml***:
-A CloudFormation YAML template that provides an alternative way to deploy the same infrastructure.
+A CloudFormation YAML template that provides an alternative way to deploy the same infrastructure`. 
 
 
-**Key Features**
+**Key Features**:
 VPC and Subnets:
-A single VPC with one public and one private subnet per availability zone.
+A single VPC with one public and one private subnet per availability zone`. 
 
 Web Application:
 An EC2 instance in the public subnet running Nginx.
-Security group allowing HTTP (port 80) traffic from the internet.
+Security group allowing HTTP (port 80) traffic from the internet`. 
 
 Database:
-An RDS MySQL database in the private subnet.
+An RDS MySQL database in the private subnet`. 
 
 Alternative Deployment:
-CloudFormation template provided for deploying the same infrastructure.
+CloudFormation template provided for deploying the same infrastructure`. 
 
 
 **Extra Step: Custom Web Application**
