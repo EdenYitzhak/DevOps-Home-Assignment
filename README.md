@@ -53,11 +53,10 @@ Installed Nginx on the EC2 instance using yum commands.
 Verified the service status using sudo systemctl.
 
 Customized Content:
-Edited the default Nginx welcome page by modifying '/usr/share/nginx/html/index.html'.
+Edited the default Nginx welcome page by modifying `/usr/share/nginx/html/index.html`.
 Replaced the default content with a personalized message:
-"Welcome to Eden's Custom Nginx Page!"
+"Welcome to Eden's Custom Nginx Page!".
 
 Verified Accessibility:
-Accessed the EC2 instance's public IP address over HTTP (http://<http://34.207.139.118/>) to confirm the custom content was displayed.
-![image](https://github.com/user-attachments/assets/44b61db8-cc06-4856-ac82-6dc73a5b0460)
+Accessed the EC2 instance's public IP address over HTTP (<http://34.207.139.118/>) to confirm the custom content was displayed.
 
