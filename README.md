@@ -1,5 +1,5 @@
 # DevOps-Home-Assignment
-This project `. 
+This assigment contains Infrastructure as Code (IaC) configurations to provision a cloud infrastructure on AWS. It includes a VPC with public and private subnets, a web server hosted on an EC2 instance, and an RDS database instance deployed in the private subnet. The project is implemented using Terraform and AWS CloudFormation. `. 
 
 ## Project Structure
 ```plaintext
