@@ -123,7 +123,7 @@ Resources:
     Properties:
       ImageId: ami-0453ec754f44f9a4a
       InstanceType: t2.micro
-      KeyName: "MyKeyPair" # Replace with your actual key pair name
+      KeyName: "MyKeyPair"
       SubnetId: !Ref PublicSubnetAZ1
       SecurityGroupIds:
         - !Ref WebSecurityGroup
@@ -140,7 +140,7 @@ Resources:
       Engine: mysql
       EngineVersion: "8.0.34"
       MasterUsername: admin
-      MasterUserPassword: password123 # Replace with a secure password
+      MasterUserPassword: password123 
       DBSubnetGroupName: !Ref RDSSubnetGroup
       VPCSecurityGroups:
         - !Ref WebSecurityGroup
