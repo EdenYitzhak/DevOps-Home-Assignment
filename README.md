@@ -91,15 +91,11 @@ To demonstrate the EC2 deployment in the public subnet, **Nginx** was installed 
 
 ---
 
-## Notes on Best Practices
+## Note on Best Practices
 
 - **Key Pair**:
   - The AWS key pair for the EC2 instance is hardcoded in `main.tf` for simplicity.
   - **Recommendation**: Use a `terraform.tfvars` file to externalize sensitive data and include it in `.gitignore`.
-
-- **Security**:
-  - Configure `.gitignore` to exclude sensitive files like `terraform.tfstate` and `terraform.tfvars`.
-
 ---
 
 ## Infrastructure Validation
