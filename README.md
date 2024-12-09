@@ -19,7 +19,6 @@ This assigment contains Infrastructure as Code (IaC) configurations to provision
 **File Descriptions**
 
 ***main.tf***:
----
 ## **Features**
 - **VPC**: Includes a VPC with public and private subnets.
 - **VM Instance**: Deployed in the public subnet and accessible via port 80 (HTTP).
