@@ -1,6 +1,6 @@
 # Define the AWS provider
 provider "aws" {
-  region = "us-east-1" # Change this to your preferred region
+  region = "us-east-1" 
 }
 
 # VPC
@@ -133,10 +133,10 @@ resource "aws_instance" "web_app_instance" {
 resource "aws_db_instance" "db_instance" {
   allocated_storage      = 20
   engine                 = "mysql"
-  engine_version         = "8.0.34" # Change to a supported version
-  instance_class         = "db.t3.micro" # Use a free-tier eligible instance type
+  engine_version         = "8.0.34" 
+  instance_class         = "db.t3.micro"
   username               = "admin"
-  password               = "password123" # Replace with a secure password
+  password               = "password123"
   publicly_accessible    = false
   vpc_security_group_ids = [aws_security_group.web_sg.id]
   db_subnet_group_name   = aws_db_subnet_group.db_subnet_group.name
@@ -152,7 +152,7 @@ resource "aws_db_subnet_group" "db_subnet_group" {
   name       = "db_subnet_group"
   subnet_ids = [
     aws_subnet.private_subnet_az1.id,
-    aws_subnet.private_subnet_az2.id, # Subnets in both Availability Zones
+    aws_subnet.private_subnet_az2.id, 
   ]
 
   tags = {
