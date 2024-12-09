@@ -26,10 +26,11 @@ RDS database instance.
 Security groups for allowing HTTP (port 80) traffic and private communication between the EC2 instance and RDS.
 
 ***infrastructure.yaml***:
-A CloudFormation YAML template that provides an alternative way to deploy the same infrastructure`. 
 
+A CloudFormation YAML template that provides an alternative way to deploy the same infrastructure.
 
 **Key Features**:
+
 VPC and Subnets:
 A single VPC with one public and one private subnet per availability zone`. 
 
