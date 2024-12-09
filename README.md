@@ -115,4 +115,4 @@ The infrastructure was successfully deployed and tested. Below are screenshots s
    ![RDS Instance](https://github.com/user-attachments/assets/69d211e4-53a4-47d3-be22-d71af86f6f8f)
 
 
-
+***Note***: While I am aware of this bonus task, I prioritized focusing on the main requirements of the assignment due to time constraints. This task could be explored further in a future iteration.
