@@ -96,7 +96,6 @@ To demonstrate the EC2 deployment in the public subnet, **Nginx** was installed 
   - **Recommendation**: Use a `terraform.tfvars` file to externalize sensitive data and include it in `.gitignore`.
 
 - **Security**:
-  - Avoid exposing sensitive information (e.g., keys, credentials) in version control.
   - Configure `.gitignore` to exclude sensitive files like `terraform.tfstate` and `terraform.tfvars`.
 
 ---
