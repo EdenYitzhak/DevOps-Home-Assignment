@@ -17,6 +17,7 @@ This assigment contains Infrastructure as Code (IaC) configurations to provision
 └── LICENSE (optional)
 ```
 **File Descriptions**
+
 ***main.tf***:
 ---
 ## **Features**
