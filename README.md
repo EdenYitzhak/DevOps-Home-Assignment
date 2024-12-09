@@ -18,12 +18,16 @@ This assigment contains Infrastructure as Code (IaC) configurations to provision
 ```
 **File Descriptions**
 ***main.tf***:
+---
+## **Features**
+- **VPC**: Includes a VPC with public and private subnets.
+- **VM Instance**: Deployed in the public subnet and accessible via port 80 (HTTP).
+- **Managed Database**: MySQL RDS instance in the private subnet.
+- **Security Groups**:
+  - Allow HTTP traffic to the VM instance.
+  - Secure communication between the VM and the database.
 
-The main Terraform configuration file that defines the entire infrastructure. This includes:
-VPC with public and private subnets.
-EC2 instance for the web application.
-RDS database instance.
-Security groups for allowing HTTP (port 80) traffic and private communication between the EC2 instance and RDS.
+---
 
 ***infrastructure.yaml***:
 
