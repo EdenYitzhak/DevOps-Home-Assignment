@@ -16,3 +16,48 @@ This assigment contains Infrastructure as Code (IaC) configurations to provision
 ├── README.md
 └── LICENSE (optional)
 ```
+**File Descriptions**
+***main.tf***:
+
+The main Terraform configuration file that defines the entire infrastructure. This includes:
+VPC with public and private subnets.
+EC2 instance for the web application.
+RDS database instance.
+Security groups for allowing HTTP (port 80) traffic and private communication between the EC2 instance and RDS.
+
+***infrastructure.yaml***:
+A CloudFormation YAML template that provides an alternative way to deploy the same infrastructure.
+
+
+**Key Features**
+VPC and Subnets:
+A single VPC with one public and one private subnet per availability zone.
+
+Web Application:
+An EC2 instance in the public subnet running Nginx.
+Security group allowing HTTP (port 80) traffic from the internet.
+
+Database:
+An RDS MySQL database in the private subnet.
+
+Alternative Deployment:
+CloudFormation template provided for deploying the same infrastructure.
+
+
+**Extra Step: Custom Web Application**
+As part of the EC2 deployment in the public subnet, Nginx was installed and configured with custom content.
+
+Steps Taken:
+Installed Nginx:
+Installed Nginx on the EC2 instance using yum commands.
+Verified the service status using sudo systemctl.
+
+Customized Content:
+Edited the default Nginx welcome page by modifying '/usr/share/nginx/html/index.html'.
+Replaced the default content with a personalized message:
+"Welcome to Eden's Custom Nginx Page!"
+
+Verified Accessibility:
+Accessed the EC2 instance's public IP address over HTTP (http://<http://34.207.139.118/>) to confirm the custom content was displayed.
+![image](https://github.com/user-attachments/assets/44b61db8-cc06-4856-ac82-6dc73a5b0460)
+
