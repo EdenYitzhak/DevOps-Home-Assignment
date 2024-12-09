@@ -1,0 +1,162 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  # VPC
+  MainVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: "10.0.0.0/16"
+      Tags:
+        - Key: Name
+          Value: "main_vpc"
+
+  # Public Subnet AZ 1
+  PublicSubnetAZ1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref MainVPC
+      CidrBlock: "10.0.5.0/24"
+      MapPublicIpOnLaunch: true
+      AvailabilityZone: "us-east-1a"
+      Tags:
+        - Key: Name
+          Value: "public_subnet_az1"
+
+  # Public Subnet AZ 2
+  PublicSubnetAZ2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref MainVPC
+      CidrBlock: "10.0.6.0/24"
+      MapPublicIpOnLaunch: true
+      AvailabilityZone: "us-east-1b"
+      Tags:
+        - Key: Name
+          Value: "public_subnet_az2"
+
+  # Private Subnet AZ 1
+  PrivateSubnetAZ1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref MainVPC
+      CidrBlock: "10.0.7.0/24"
+      AvailabilityZone: "us-east-1a"
+      Tags:
+        - Key: Name
+          Value: "private_subnet_az1"
+
+  # Private Subnet AZ 2
+  PrivateSubnetAZ2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref MainVPC
+      CidrBlock: "10.0.8.0/24"
+      AvailabilityZone: "us-east-1b"
+      Tags:
+        - Key: Name
+          Value: "private_subnet_az2"
+
+  # Internet Gateway
+  InternetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value: "main_igw"
+
+  AttachIGWToVPC:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref MainVPC
+      InternetGatewayId: !Ref InternetGateway
+
+  # Route Table
+  PublicRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref MainVPC
+      Tags:
+        - Key: Name
+          Value: "public_rt"
+
+  PublicRoute:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref PublicRouteTable
+      DestinationCidrBlock: "0.0.0.0/0"
+      GatewayId: !Ref InternetGateway
+
+  RouteTableAssociationAZ1:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref PublicSubnetAZ1
+      RouteTableId: !Ref PublicRouteTable
+
+  RouteTableAssociationAZ2:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref PublicSubnetAZ2
+      RouteTableId: !Ref PublicRouteTable
+
+  # Security Group for Web Application
+  WebSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "Allow HTTP traffic"
+      VpcId: !Ref MainVPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: "0.0.0.0/0"
+      SecurityGroupEgress:
+        - IpProtocol: -1
+          FromPort: 0
+          ToPort: 0
+          CidrIp: "0.0.0.0/0"
+      Tags:
+        - Key: Name
+          Value: "web_sg"
+
+  # EC2 Instance in Public Subnet AZ 1
+  WebAppInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-0453ec754f44f9a4a
+      InstanceType: t2.micro
+      KeyName: "MyKeyPair" 
+      SubnetId: !Ref PublicSubnetAZ1
+      SecurityGroupIds:
+        - !Ref WebSecurityGroup
+      Tags:
+        - Key: Name
+          Value: "web_app_instance"
+
+  # RDS Database in Private Subnet
+  RDSInstance:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      AllocatedStorage: 20
+      DBInstanceClass: db.t3.micro
+      Engine: mysql
+      EngineVersion: "8.0.34"
+      MasterUsername: admin
+      MasterUserPassword: password123 
+      DBSubnetGroupName: !Ref RDSSubnetGroup
+      VPCSecurityGroups:
+        - !Ref WebSecurityGroup
+      PubliclyAccessible: false
+      Tags:
+        - Key: Name
+          Value: "db_instance"
+
+  # DB Subnet Group
+  RDSSubnetGroup:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupDescription: "RDS Subnet Group"
+      SubnetIds:
+        - !Ref PrivateSubnetAZ1
+        - !Ref PrivateSubnetAZ2
+      Tags:
+        - Key: Name
+          Value: "db_subnet_group"
