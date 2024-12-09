@@ -66,7 +66,9 @@ This CloudFormation YAML template provides an alternative approach to deploy the
 3. **Verify Deployment**:
    - Terraform will output the **public IP of the EC2 instance** and the **RDS database endpoint**.
 
----
+### Alternative Deployment with CloudFormation
+**Use the AWS CLI or AWS Console to deploy the infrastructure.yaml file
+**---
 
 ## Extra Step: Custom Web Application
 
